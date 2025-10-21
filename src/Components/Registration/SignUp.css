@@ -1,0 +1,52 @@
+.singUpMain{
+    background:url("../../Images/signupBg.jpg")no-repeat center ;
+    background-size: cover;
+    height: 110vh;
+}
+.signup{
+    display: flex;
+    max-width: 500px;
+    margin: 8vh auto;
+}
+.content1{
+    border: .5px solid peachpuff;
+    width: 100%;
+    margin: 20px;
+    display: flex;
+    align-content: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    color: white;
+}
+.text{
+    width: 70%;
+    margin: 10px auto !important;
+}
+.text .MuiOutlinedInput-notchedOutline {
+  border: .5px solid white !important ;
+}
+.text input{
+    color: rgb(255, 255, 255) !important;
+}
+.text label{
+    color: rgb(255, 255, 255) !important;
+    font-size: 20px;
+    left: -5px !important;
+    top: -1px;
+}
+.submit{
+    display: flex;
+    width: 70%;
+     margin: 10px auto !important;
+     background: linear-gradient(to right,rgb(226, 158, 85), rgb(217, 187, 165),rgb(226, 158, 85));
+}
+.back{
+    background: rgb(237, 210, 174);
+    border: none;
+    border-radius: 20px;
+}
