@@ -3,7 +3,8 @@
     src: url("../fonst/Poppins-LightItalic.ttf");
 }
 body{
-    background-color: bisque;
+    /* background-color: bisque; */
+    background: linear-gradient( bisque, bisque,rgb(243, 224, 201), bisque);
 }
 .main{
     background-color: bisque;

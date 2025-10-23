@@ -7,78 +7,85 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import "./ViewBooks.css";
 import Carousel from "react-material-ui-carousel";
-import {jwtDecode} from 'jwt-decode'
+import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
 import Confirm from "../Confirm/Confirm";
-import "./ViewResponsiv.css"
-
-
+import "./ViewResponsiv.css";
+import EditBook from "../EditBook/EditBook";
 
 const ViewBooks = () => {
-  const notify = () => toast.dark("Book Have been deleted")
-  const notify2 = () => toast.dark("Book is not deleted")
+  const notify = () => toast.dark("Book Have been deleted");
+  const notify2 = () => toast.dark("Book is not deleted");
   const [books, setBooks] = useState([]);
   const token = localStorage.getItem("token");
   const [userId, setUserId] = useState(null);
   const [refresh, setRefresh] = useState(false);
-  const[deleteId,setDeleteId]=useState(null)
-  const[openConfirm,setOpenConfirm]=useState(false)
-// ------delete book----------------
 
-const handleDeleteClick =(id)=>{
-  setDeleteId(id)
-  setOpenConfirm(true)
-}
+  const [deleteId, setDeleteId] = useState(null);
+  const [openConfirm, setOpenConfirm] = useState(false);
 
-const onhandledelete =(id)=>{
-  if(!deleteId) return;
-  try{
-    const dltdata =async ()=>{
-      const res = await axios.put(
-        `http://localhost:5000/Books/delete-book/?id=${deleteId}`,{},
-        {
-          headers:{
-            Authorization:`Bearer ${token}`
+  const [editId, setEditId] = useState(null);
+  const [selectBook, setSelectBook] = useState(null);
+  const [openEdit, setopenEdit] = useState(false);
+  // ------delete book----------------
+
+  const handleDeleteClick = (id) => {
+    setDeleteId(id);
+    setOpenConfirm(true);
+  };
+
+  const onhandledelete = (id) => {
+    if (!deleteId) return;
+    try {
+      const dltdata = async () => {
+        const res = await axios.put(
+          `http://localhost:5000/Books/delete-book/?id=${deleteId}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
-      }
-
-      );
-      setBooks((prev)=>prev.filter((p)=>p.id !==deleteId))
-      console.log(res.data,"deleted")
-      notify()
-    }
-    dltdata()
-  }catch(err){
-    console.log(err,"error is in the delete function")
-  }
-  finally {
+        );
+        setBooks((prev) => prev.filter((p) => p.id !== deleteId));
+        console.log(res.data, "deleted");
+        notify();
+      };
+      dltdata();
+    } catch (err) {
+      console.log(err, "error is in the delete function");
+    } finally {
       setOpenConfirm(false);
       setDeleteId(null);
-  }
-}
-
-
-// -----------get user id from token-------------
-
-useEffect(()=>{
-  if(token){
-    try{
-      const decode =jwtDecode(token)
-      setUserId(decode.id)
     }
-    catch(err){
-      console.log(err,"error is in the taiking id from the token")
+  };
+  // -----------update book------------------------
+
+  const handleUpdate = (id, books) => {
+    setEditId(id);
+    setSelectBook(books);
+    setopenEdit(true);
+  };
+
+  // -----------get user id from token-------------
+
+  useEffect(() => {
+    if (token) {
+      try {
+        const decode = jwtDecode(token);
+        setUserId(decode.id);
+      } catch (err) {
+        console.log(err, "error is in the taiking id from the token");
+      }
     }
-  }
-},[token])
+  }, [token]);
 
-// ------refresh---------------
-const reloadComponent =()=>{
-  setRefresh((prev)=> !prev)
-}
+  // ------refresh---------------
+  const reloadComponent = () => {
+    setRefresh((prev) => !prev);
+  };
 
-
-// ---------viwe books all book-----------------
+  // ---------viwe books all book-----------------
   useEffect(() => {
     const FechData = async () => {
       try {
@@ -93,7 +100,6 @@ const reloadComponent =()=>{
         }));
         console.log(idreplace);
         setBooks(idreplace);
-        
       } catch (err) {
         console.log(err, "error is in the fetching data");
       }
@@ -106,7 +112,6 @@ const reloadComponent =()=>{
       <div className="section1-newbook">
         <div className="grids">
           {books.map((book) => (
-
             <div className="content" key={book.id}>
               <Card className="Card">
                 <h4 className="bookname">{book.bookname}</h4>
@@ -116,21 +121,19 @@ const reloadComponent =()=>{
                   navButtonsAlwaysVisible={false}
                   indicators={false}
                 >
-                  {(Array.isArray(book.image)
-                    ? book.image
-                    : [book.image]
-                  )?.map((img, index) => (
-                    
-                    <CardMedia
-                     key={img}
-                      className="CardMedia"
-                      sx={{ width: "100%", objectFit: "contain" }}
-                      height="240px"
-                      image={`http://localhost:5000/${img}`}
-                      component="img"
-                      title={`${book.bookname} - ${index + 1}`}
-                    />
-                  ))}
+                  {(Array.isArray(book.image) ? book.image : [book.image])?.map(
+                    (img, index) => (
+                      <CardMedia
+                        key={img}
+                        className="CardMedia"
+                        sx={{ width: "100%", objectFit: "contain" }}
+                        height="240px"
+                        image={`http://localhost:5000/${img}`}
+                        component="img"
+                        title={`${book.bookname} - ${index + 1}`}
+                      />
+                    )
+                  )}
                 </Carousel>
 
                 <CardContent>
@@ -149,42 +152,60 @@ const reloadComponent =()=>{
                   >
                     {book.description}
                   </Typography>
-                  
                 </CardContent>
 
                 {book.user === userId && (
-                <div className="btns">
-                  <Button
-                  className="dltbtn"
-                    variant="contained"
-                    size="small"
-                    onClick={() => handleDeleteClick(book.id)}
-                  >
-                    delete
-                  </Button>
-                  <Button
-                  className="editbtn"
-                    variant="contained"
-                    size="small"
-                    // onClick={() => hadleUpdate(books.id, books)}
-                  >
-                    edit
-                  </Button>
-                </div>
-              )}
+                  <div className="btns">
+                    <Button
+                      className="dltbtn"
+                      variant="contained"
+                      size="small"
+                      onClick={() => handleDeleteClick(book.id)}
+                    >
+                      delete
+                    </Button>
+                    <Button
+                      className="editbtn"
+                      variant="contained"
+                      size="small"
+                      onClick={() => handleUpdate(book.id, book)}
+                    >
+                      edit
+                    </Button>
+                  </div>
+                )}
               </Card>
             </div>
           ))}
         </div>
         <Confirm
-        open={openConfirm}
-        onConfirm={onhandledelete}
-        onCancel={()=>{
-          setOpenConfirm(false)
-          notify2()
-          setDeleteId(null);
-        }}
+          open={openConfirm}
+          onConfirm={onhandledelete}
+          onCancel={() => {
+            setOpenConfirm(false);
+            notify2();
+            setDeleteId(null);
+          }}
         />
+        {openEdit && (
+          <EditBook
+            open={openEdit}
+            book={selectBook}
+            id={editId}
+            onClose={(updateBook) => {
+              setopenEdit(false);
+              if (updateBook) {
+                setBooks((prev) =>
+                  prev.map((p) =>
+                    p.id === updateBook._id
+                      ? { id: updateBook._id, ...updateBook }
+                      : p
+                  )
+                );
+              }
+            }}
+          />
+        )}
       </div>
     </div>
   );

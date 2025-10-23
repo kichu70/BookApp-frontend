@@ -1,5 +1,6 @@
 .grids{
   display: grid;
+  row-gap: 25px;
   grid-template-columns: repeat(3, 1fr);
   margin: 100px auto 0;
 }
@@ -10,7 +11,7 @@
   padding: 20px ;
   border-top-left-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
-  box-shadow: black 0 0 20px !important;
+  box-shadow: rgb(153, 135, 31) 0 0 20px !important;
   background: linear-gradient(rgb(255, 211, 154),rgb(255, 253, 249),rgb(244, 202, 147),rgb(252, 243, 225)) !important;
 }
 .price{
@@ -32,9 +33,12 @@
   /* gap: 50px; */
   justify-content: space-evenly;
   margin: 20px auto !important;
+  width: 100%;
+  gap: 10px;
   
 }
 .dltbtn{
+  width: 100%;
   color: rgb(87, 69, 43) !important;
   font-family: cursive !important;
   box-shadow: rgb(165, 152, 136) 0 0 10px !important ;
@@ -48,8 +52,8 @@
   box-shadow: red 0 0 10px !important;
 }
 .editbtn{
+  width: 100%;
   color: rgb(92, 77, 56) !important;
-
   font-family: cursive !important;
   box-shadow: rgb(151, 133, 111) 0 0 10px !important ;
   background-color: rgb(176, 152, 16) !important;
