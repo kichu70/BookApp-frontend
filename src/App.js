@@ -1,9 +1,9 @@
 import {  BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import SignUp from "./Components/Registration/SignUp";
-import Home from "./Pages/Home/Home";
 import { useAuth } from "./auth/AuthContext";
 import Login from "./Components/Login/Login";
+import Home from "./Components/Home/Home";
 
 function App() {
   const { user } = useAuth();

@@ -1,0 +1,56 @@
+.grids{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 100px auto 0;
+}
+.Card {
+  width: 250px !important;
+  min-height: 400px !important;
+  margin: 15px auto;
+  padding: 20px ;
+  border-top-left-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+  box-shadow: black 0 0 20px !important;
+  background: linear-gradient(rgb(255, 211, 154),rgb(255, 253, 249),rgb(244, 202, 147),rgb(252, 243, 225)) !important;
+}
+.price{
+  margin: 0 0 20px;
+}
+.bookname{
+  /* color: aqua; */
+  text-transform: capitalize;
+  /* text-align: center; */
+  margin-left: 10px;
+  font-family: cursive;
+  font-size: 18px;
+}
+.Card:hover{
+  transform: scale(1.05);
+}
+.btns{
+  display: flex !important;
+  /* gap: 50px; */
+  justify-content: space-evenly;
+  margin: 20px auto !important;
+  
+}
+.dltbtn{
+  color: rgb(87, 69, 43) !important;
+  font-family: cursive !important;
+  box-shadow: rgb(165, 152, 136) 0 0 10px !important ;
+  background-color: rgb(205, 148, 110) !important;
+}
+.dltbtn:hover{
+  transform: scale(.99);
+}
+.dltbtn:active{
+  background-color: rgb(204, 96, 24) !important; 
+  box-shadow: red 0 0 10px !important;
+}
+.editbtn{
+  color: rgb(92, 77, 56) !important;
+
+  font-family: cursive !important;
+  box-shadow: rgb(151, 133, 111) 0 0 10px !important ;
+  background-color: rgb(176, 152, 16) !important;
+}

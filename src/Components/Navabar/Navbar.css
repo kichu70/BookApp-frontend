@@ -1,0 +1,90 @@
+@font-face {
+  font-family: cursiveOne;
+  src: url("../fonst/PlaywriteDESAS-Regular.ttf");
+}
+
+.navbar {
+  /* background-color: blue; */
+  margin: auto;
+  max-width: 1250px;
+}
+.mblMenu{
+  display: none;
+}
+.navbar-div1 {
+  text-align: center;
+  font-family: cursiveOne;
+  font-size: 1.8vw;
+  /* font-size: 25.5px; */
+  background: linear-gradient(to right, #ebc98b, #51492e) border-box;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* text-shadow: #ebc98b 0 0 50px; */
+  color: transparent;
+}
+.navbar-div2{
+    justify-content: space-between;
+    display: flex;
+    /* padding: 20px  0; */
+    border-radius: 20px;
+    border-top: 2px solid rgb(215, 138, 71);
+    border-bottom: 2px solid rgb(168, 104, 49);
+}
+.navbar-div3{
+   justify-content: space-around;
+    display: flex;
+    padding: 20px  0;
+    width: 100%;
+}
+.navbar-div2 button{
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #c59e1d;
+}
+.navbar-div2 button:hover{
+  color: #7e5733;
+   transform: scale(1.1);
+
+}
+#mblMenuBtn{
+ display: none;
+}
+.mbllogo{
+ display: none;
+}
+@media (max-width:730px) {
+  .navbar-div3{
+    display: none;
+  }
+ #mblMenuBtn{
+    display: block;
+  padding-right: 20px;
+
+  } 
+.mbllogo{
+ display: block;
+ font-size: 20px;
+ padding-left: 20px;
+ font-family:cursive ;
+ color: #7e5733;
+}
+.mblMenu{
+    display: flex;
+    position: absolute;
+    background-color: rgb(233, 205, 145);
+    flex-direction: column;
+    right: 20px;
+    top: 20px;
+    width: 40%;
+    gap: 80px;
+    padding: 50px;
+    z-index: 100;
+    border-bottom-left-radius:20px ;
+    box-shadow: #51492e -5px 5px 10px;
+}
+
+
+
+}
