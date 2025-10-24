@@ -11,8 +11,9 @@
   padding: 20px ;
   border-top-left-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
-  box-shadow: rgb(153, 135, 31) 0 0 20px !important;
-  background: linear-gradient(rgb(255, 211, 154),rgb(255, 253, 249),rgb(244, 202, 147),rgb(252, 243, 225)) !important;
+  box-shadow: rgb(181, 172, 118) 0 0 10px !important;
+  background: linear-gradient(rgb(245, 223, 194),rgb(255, 253, 249),rgb(239, 221, 197),rgb(252, 243, 225)) !important;
+  /* background: linear-gradient(rgb(255, 211, 154),rgb(255, 253, 249),rgb(244, 202, 147),rgb(252, 243, 225)) !important; */
 }
 .price{
   margin: 0 0 20px;
@@ -26,6 +27,8 @@
   font-size: 18px;
 }
 .Card:hover{
+  box-shadow: rgb(181, 172, 118) 0 0 20px !important;
+  transition: 0.3s;
   transform: scale(1.05);
 }
 .btns{

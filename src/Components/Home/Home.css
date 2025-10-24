@@ -82,6 +82,7 @@ body{
 }
 .cnt-div2 img:hover,.cnt-div1 img:hover{
     transform: scale(1.09);
+  transition: 0.3s;
 
 }
 

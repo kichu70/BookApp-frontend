@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Navbar.css";
 import { useAuth } from "../../auth/AuthContext";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
@@ -18,6 +19,7 @@ const Navbar = () => {
     };
   }, []);
 
+  const navigate =useNavigate()
   return (
     <div className="nav-main">
       &nbsp;
@@ -30,7 +32,7 @@ const Navbar = () => {
           <button>home</button>
           <button>Books</button>
           <button>Aboutus</button>
-          <button>contact-us</button>
+          <button onClick={()=>navigate('/add-book')}>Add-Book</button>
           <button onClick={logout}>Logout</button>
         </div>
         <h1 className="mbllogo">happy shopping</h1>
@@ -42,7 +44,7 @@ const Navbar = () => {
             <button>home</button>
             <button>Books</button>
             <button>Aboutus</button>
-            <button>contact-us</button>
+            <button>Add-Book</button>
             <button onClick={logout}>Logout</button>
           </div>
         )}
