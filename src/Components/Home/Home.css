@@ -4,20 +4,22 @@
 }
 body{
     /* background-color: bisque; */
-    background: linear-gradient( bisque, bisque,rgb(243, 224, 201), bisque);
+    background: linear-gradient( bisque,rgb(253, 233, 209), rgb(240, 237, 234), rgb(237, 237, 237));
+      background-attachment: fixed;
 }
 .main{
-    background-color: bisque;
-    padding: 20px;
+    /* background-color: bisque; */
+    margin-bottom: fit-content;
 }
 .home-main{
-    padding: 20px;
     background: url("../../Images/bgImg1.png") center center;
-     background-size: cover;
-     height: 100vh;
-     margin: auto;
-     border-radius: 20px;
+    background-size: cover;
+    height: 100vh;
+    margin: auto;
+    border-radius: 20px;
+    padding: 20px;
 }
+
 .head-content{
     text-align: center;
     max-width: 80%;

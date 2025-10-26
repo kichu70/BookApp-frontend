@@ -13,12 +13,24 @@ const AddBook = () => {
   const [bookPrice, setBookPrice] = useState("");
   const [bookCategory, setBookCategory] = useState("");
   const [image, setImage] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState([]);
+  const [error, setError] = useState(false);
 
-
-const navigate =useNavigate()
+  const navigate = useNavigate();
 
   const addBook = async (req, res) => {
+    if (
+      !bookName ||
+      !bookAuthor ||
+      !bookDescription ||
+      !bookPrice ||
+      !bookCategory
+    ) {
+      setError(true);
+      toast.error("Please fill all fields before submitting!");
+      return;
+    }
     try {
       const formData = new FormData();
       formData.append("author", bookAuthor);
@@ -38,17 +50,17 @@ const navigate =useNavigate()
           },
         }
       );
-      console.log(res)
+      console.log(res);
       setBookAuthor("");
       setBookName("");
       setBookPrice("");
       setBookDescription("");
       setBookCategory("");
       setImage([]);
-      navigate("/")
+      navigate("/");
     } catch (err) {
       if (err.response) {
-        const errors = err.res.response.data.msg;
+        const errors = err.response.data;
         for (const key in errors) {
           if (errors.hasOwnProperty(key)) {
             toast.error(errors[key]);
@@ -58,6 +70,8 @@ const navigate =useNavigate()
         toast.error("something went wrong in the adding product");
         console.log(err, "error is in the adding book frontend");
       }
+    } finally {
+      setLoading(false);
     }
   };
   const handleImageChange = (e) => {
@@ -76,9 +90,9 @@ const navigate =useNavigate()
       &nbsp;
       <div className="add-main">
         <div className="addbook-head">
-      <Button id="close" onClick={()=>navigate("/")}>
-        X
-      </Button>
+          <Button id="close" onClick={() => navigate("/")}>
+            X
+          </Button>
           <h1>add new book</h1>
           <div className="addbook-content">
             <div className="addbook-grid1">
@@ -86,17 +100,33 @@ const navigate =useNavigate()
                 onChange={(e) => setBookAuthor(e.target.value)}
                 value={bookAuthor}
                 className="textEditField"
-                label="Book Name"
+                label="Author"
                 variant="filled"
                 focused
+                error={error && (!bookAuthor || bookAuthor.length < 3)}
+                helperText={
+                  error && !bookAuthor
+                    ? "Author name is required"
+                    : error && bookAuthor.length < 3
+                    ? "Author must be at least 3 characters"
+                    : ""
+                }
               />
               <TextField
                 onChange={(e) => setBookName(e.target.value)}
                 value={bookName}
                 className="textEditField"
-                label="Author"
+                label="Book Name"
                 variant="filled"
                 focused
+                error={error && (!bookName || bookName.length < 3)}
+                helperText={
+                  error && !bookName
+                    ? "Book Name  is required"
+                    : error && bookName.length < 3
+                    ? "Book Name must be at least 3 characters"
+                    : ""
+                }
               />
               <TextField
                 onChange={(e) => setBookPrice(e.target.value)}
@@ -106,19 +136,28 @@ const navigate =useNavigate()
                 type="Number"
                 variant="filled"
                 focused
+                error={error && (!bookPrice || bookPrice.length < 3)}
+                helperText={
+                  error && !bookName
+                    ? "price is required"
+                    : error && bookPrice <= 0
+                    ? "Price  must be  greater than 0"
+                    : ""
+                }
               />
               <select
                 id="category"
                 name="category"
-                value={setBookCategory}
+                value={bookCategory}
                 onChange={(e) => setBookCategory(e.target.value)}
                 required
+                
               >
                 <option value="">
                   <h1>Seclect category</h1>
                 </option>
                 <option value="New">New Book</option>
-                <option value="">Old Book</option>
+                <option value="Used">Old Book</option>
               </select>
             </div>
             <div className="addbook-grid2">
@@ -129,6 +168,14 @@ const navigate =useNavigate()
                 label="Description"
                 variant="filled"
                 focused
+                error={error && (!bookDescription || bookDescription.length < 3)}
+                helperText={
+                  error && !bookDescription
+                    ? "price is required"
+                    : error && bookDescription.length < 3
+                    ? "Book Description must be at least 3 characters"
+                    : ""
+                }
               />
               <input
                 type="file"
@@ -138,34 +185,31 @@ const navigate =useNavigate()
               />
 
               <div className="imagePreview">
-                {imagePreview.map(
-                  (
-                    src,
-                    idx 
-                  ) => (
-                    <div className="imgPrev2" key={idx}>
-                      <img
-                        key={idx}
-                        src={src}
-                        alt={`preview-${idx}`}
-                        style={{
-                          width: "30px",
-                          height: "30px",
-                          objectFit: "cover",
-                        }}
-                      />
-                      <button id="xBtn" onClick={() => removeImage(idx)}>
-                        x
-                      </button>
-                    </div>
-                  )
-                )}
+                {imagePreview.map((src, idx) => (
+                  <div className="imgPrev2" key={idx}>
+                    <img
+                      key={idx}
+                      src={src}
+                      alt={`preview-${idx}`}
+                      style={{
+                        width: "30px",
+                        height: "30px",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <button id="xBtn" onClick={() => removeImage(idx)}>
+                      x
+                    </button>
+                  </div>
+                ))}
               </div>
-
             </div>
           </div>
 
-          <Button variant="contained" onClick={addBook}>submit</Button>
+          <Button variant="contained" onClick={addBook} disabled={loading}>
+            {" "}
+            {loading ? "Uploading..." : "Submit"}
+          </Button>
         </div>
       </div>
     </div>

@@ -1,0 +1,13 @@
+.cart-main{
+    margin: 50px auto;
+    max-width: 500px;
+    background-color: red;
+}.cart-cnt{
+    width: 100%;
+    background-color: aqua;
+    height: 280px ;   
+    margin: auto;
+}
+.cart-slide{
+    height: 100%;
+}

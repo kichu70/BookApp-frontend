@@ -1,24 +1,23 @@
-.grids{
+.grids {
   display: grid;
   row-gap: 25px;
-  grid-template-columns: repeat(3, 1fr);
-  margin: 100px auto 0;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 150px auto 0;
+  gap: 15px;
+  max-width: 1250px;
 }
 .Card {
-  width: 250px !important;
+  max-width: 100% !important;
   min-height: 400px !important;
   margin: 15px auto;
-  padding: 20px ;
-  border-top-left-radius: 20px !important;
-  border-bottom-right-radius: 20px !important;
+  padding: 20px;
+  border-radius: 20px !important;
   box-shadow: rgb(181, 172, 118) 0 0 10px !important;
-  background: linear-gradient(rgb(245, 223, 194),rgb(255, 253, 249),rgb(239, 221, 197),rgb(252, 243, 225)) !important;
-  /* background: linear-gradient(rgb(255, 211, 154),rgb(255, 253, 249),rgb(244, 202, 147),rgb(252, 243, 225)) !important; */
 }
-.price{
+.price {
   margin: 0 0 20px;
 }
-.bookname{
+.bookname {
   /* color: aqua; */
   text-transform: capitalize;
   /* text-align: center; */
@@ -26,38 +25,53 @@
   font-family: cursive;
   font-size: 18px;
 }
-.Card:hover{
+.Card:hover {
   box-shadow: rgb(181, 172, 118) 0 0 20px !important;
   transition: 0.3s;
   transform: scale(1.05);
 }
-.btns{
+.btns {
   display: flex !important;
   /* gap: 50px; */
   justify-content: space-evenly;
   margin: 20px auto !important;
   width: 100%;
   gap: 10px;
-  
 }
-.dltbtn{
+.dltbtn {
   width: 100%;
-  color: rgb(87, 69, 43) !important;
+  color: rgb(240, 230, 230) !important;
   font-family: cursive !important;
   box-shadow: rgb(165, 152, 136) 0 0 10px !important ;
-  background-color: rgb(205, 148, 110) !important;
+  background-color: rgb(198, 44, 44) !important;
 }
-.dltbtn:hover{
-  transform: scale(.99);
+.dltbtn:hover {
+  transform: scale(0.99);
 }
-.dltbtn:active{
-  background-color: rgb(204, 96, 24) !important; 
+.dltbtn:active {
+  background-color: rgb(204, 96, 24) !important;
   box-shadow: red 0 0 10px !important;
 }
-.editbtn{
+.editbtn {
   width: 100%;
-  color: rgb(92, 77, 56) !important;
+  /* background-color: rgb(236, 96, 20) !important; */
   font-family: cursive !important;
   box-shadow: rgb(151, 133, 111) 0 0 10px !important ;
-  background-color: rgb(176, 152, 16) !important;
+}
+.price{
+  color: green;
+}
+.buybtn{
+  display: flex;
+  justify-content: space-evenly;
+}
+.buynow{
+   color: rgb(223, 221, 221) !important;
+  font-weight: 300 !important;
+  background-color: rgb(105, 171, 105) !important;
+}
+.add-to-cart{
+  background-color: rgb(129, 123, 120) !important;
+  color:rgb(223, 221, 221)!important;
+  font-weight: 300 !important;
 }

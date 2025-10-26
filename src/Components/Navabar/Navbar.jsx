@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Navbar.css";
 import { useAuth } from "../../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
@@ -34,6 +35,7 @@ const Navbar = () => {
           <button>Aboutus</button>
           <button onClick={()=>navigate('/add-book')}>Add-Book</button>
           <button onClick={logout}>Logout</button>
+        <button onClick={()=>navigate("/add-cart")}><ShoppingCartIcon/></button>
         </div>
         <h1 className="mbllogo">happy shopping</h1>
         <button id="mblMenuBtn" onClick={() => setMenuOpen(!menuOpen)}>

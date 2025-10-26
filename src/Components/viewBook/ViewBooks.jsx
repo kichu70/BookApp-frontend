@@ -12,6 +12,9 @@ import { toast } from "react-toastify";
 import Confirm from "../Confirm/Confirm";
 import "./ViewResponsiv.css";
 import EditBook from "../EditBook/EditBook";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import addToCart from "../AddtoCart/AddtoCart";
+import { useAuth } from "../../auth/AuthContext";
 
 const ViewBooks = () => {
   const notify = () => toast.dark("Book Have been deleted");
@@ -27,8 +30,9 @@ const ViewBooks = () => {
   const [editId, setEditId] = useState(null);
   const [selectBook, setSelectBook] = useState(null);
   const [openEdit, setopenEdit] = useState(false);
+  const {addToCart}=useAuth()
   // ------delete book----------------
-
+  
   const handleDeleteClick = (id) => {
     setDeleteId(id);
     setOpenConfirm(true);
@@ -107,6 +111,9 @@ const ViewBooks = () => {
     FechData();
   }, [refresh]);
 
+
+  // ---------------addToCatr----------------------
+
   return (
     <div>
       <div className="section1-newbook">
@@ -172,6 +179,12 @@ const ViewBooks = () => {
                     >
                       edit
                     </Button>
+                  </div>
+                )}
+                {book.user !== userId && (
+                  <div className="buybtn">
+                    <Button className="buynow" variant="contained">Buy Now</Button>
+                    <Button className="add-to-cart" variant="contained" onClick={()=>addToCart(book)}>Add to Cart</Button>
                   </div>
                 )}
               </Card>

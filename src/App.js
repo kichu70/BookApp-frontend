@@ -3,8 +3,9 @@ import "./App.css";
 import SignUp from "./Components/Registration/SignUp";
 import { useAuth } from "./auth/AuthContext";
 import Login from "./Components/Login/Login";
-import Home from "./Components/Home/Home";
 import AddBook from "./Components/AddBook/AddBook";
+import HomePage from "./Pages/HomePage/HomePage";
+import AddtoCart from "./Components/AddtoCart/AddtoCart";
 
 function App() {
   const { user } = useAuth();
@@ -14,8 +15,9 @@ function App() {
         <Routes>
           <Route path='/login' element={user ? <Navigate to='/'/> : <Login/>}/>
           <Route path='signup' element={<SignUp />} />
-          <Route path='/' element={user ? <Home />: <Navigate to="/login" />} />
+          <Route path='/' element={user ? <HomePage />: <Navigate to="/login" />} />
           <Route path='/add-book' element={user ? <AddBook/>: <Navigate to="/login" />} />
+          <Route path='/add-cart' element={user ? <AddtoCart/>: <Navigate to="/login" />} />
         </Routes>
       </BrowserRouter>
     </div>
