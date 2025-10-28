@@ -33,8 +33,8 @@ const CategoryOfBooks = () => {
   
   return (
     <div className="category">
-      <h1>New Book's</h1>
-    <div className="slider">
+      <h1 id="new">New Book's</h1>
+    <div className="slider" >
       <div className="slide-track">
         {displayBooks.map((book, idx) => (
           <Card className="slide" key={idx}>
@@ -54,8 +54,8 @@ const CategoryOfBooks = () => {
         ))}
       </div>
     </div>
-    <h1>Old Book's</h1>
-     <div className="slider2">
+    <h1 id="used">Old Book's</h1>
+     <div className="slider2" >
       <div className="slide-track2">
         {displayBooks2.map((book, idx) => (
           <Card className="slide2" key={idx}>

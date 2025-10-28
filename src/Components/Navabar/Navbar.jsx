@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Navbar.css";
 import { useAuth } from "../../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
@@ -20,7 +20,7 @@ const Navbar = () => {
     };
   }, []);
 
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="nav-main">
       &nbsp;
@@ -30,26 +30,33 @@ const Navbar = () => {
         </div>
         <div className="navbar-div2">
           <div className="navbar-div3">
-          <button>home</button>
-          <button>Books</button>
-          <button>Aboutus</button>
-          <button onClick={()=>navigate('/add-book')}>Add-Book</button>
-          <button onClick={logout}>Logout</button>
-        <button onClick={()=>navigate("/add-cart")}><ShoppingCartIcon/></button>
-        </div>
-        <h1 className="mbllogo">happy shopping</h1>
-        <button id="mblMenuBtn" onClick={() => setMenuOpen(!menuOpen)}>
-          ☰
-        </button>
-        {menuOpen && (
-          <div ref={menuRef} className="mblMenu" id="mblMenu">
             <button>home</button>
             <button>Books</button>
             <button>Aboutus</button>
-            <button>Add-Book</button>
+            <button onClick={() => navigate("/add-book")}>Add-Book</button>
             <button onClick={logout}>Logout</button>
+            <button onClick={() => navigate("/add-cart")}>
+              <ShoppingCartIcon />
+            </button>
           </div>
-        )}
+          <h1 className="mbllogo">happy shopping</h1>
+          <div id="mblMenuBtn" >
+            <button onClick={() => navigate("/add-cart")}>
+              <ShoppingCartIcon />
+            </button>
+            <button onClick={() => setMenuOpen(!menuOpen)}>
+              ☰
+            </button>
+          </div>{" "}
+          {menuOpen && (
+            <div ref={menuRef} className="mblMenu" id="mblMenu">
+              <button>home</button>
+              <button>Books</button>
+              <button>Aboutus</button>
+              <button>Add-Book</button>
+              <button onClick={logout}>Logout</button>
+            </div>
+          )}
         </div>
       </div>
     </div>

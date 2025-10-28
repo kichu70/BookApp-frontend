@@ -59,7 +59,7 @@
     display: none;
   }
  #mblMenuBtn{
-    display: block;
+  display: flex;
   padding-right: 20px;
 
   } 
@@ -69,6 +69,11 @@
  padding-left: 20px;
  font-family:cursive ;
  color: #7e5733;
+}
+.mbl-menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .mblMenu{
     display: flex;

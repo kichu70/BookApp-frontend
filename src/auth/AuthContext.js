@@ -6,9 +6,21 @@ import { toast, ToastContainer } from "react-toastify";
 const AuthContext = createContext();
 
 export const AuthProvider =({children})=>{
+
+  const safeParse =(key)=>{ //the name because if i give direct Parse then it will get error  
+    try{
+      const value =localStorage.getItem(key);
+      if (!value || value === "undefined" || value === "null") return null;
+      return JSON.parse(value);
+    }
+    catch(err){
+      console.log(err,`Error parsing localStorage key "${key}"`)
+      return null;
+    }
+  }
     const[token,setToken]=useState(null);
     const[user,setUser]=useState(null);
-    const [cartItems, setCartItems] = useState([]);
+    const [cartItems, setCartItems] = useState(()=>safeParse("cartItems") || []);
 
 
     // ----------
@@ -44,11 +56,19 @@ export const AuthProvider =({children})=>{
 
 
 //  ----------removecart-----
-
-  const removeFromCart = (bookId) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== bookId));
+const removeFromCart = (bookId) => {
+  setCartItems((prev) => {
+    const updated = prev.filter((item) => item.id !== bookId);
+    if (updated.length > 0) {
+      localStorage.setItem("cartItems", JSON.stringify(updated));
+    } else {
+      localStorage.removeItem("cartItems");
+    }
     toast.info("Book removed from cart");
-  };
+    return updated;
+  });
+};
+
 
     // ----------
     const login=async(email,password)=>{
