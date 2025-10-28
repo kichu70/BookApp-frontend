@@ -80,8 +80,8 @@
     position: absolute;
     background-color: rgb(233, 205, 145);
     flex-direction: column;
-    right: 20px;
-    top: 20px;
+    right: 0px;
+    top: 0px;
     width: 40%;
     gap: 80px;
     padding: 50px;

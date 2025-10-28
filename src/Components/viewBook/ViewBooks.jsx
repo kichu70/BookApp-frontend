@@ -119,7 +119,7 @@ const ViewBooks = () => {
       <div className="section1-newbook">
         <div className="grids">
           {books.map((book) => (
-            <div className="content" key={book.id}>
+            <div id="books" className="content" key={book.id}>
               <Card className="Card">
                 <h4 className="bookname">{book.bookname}</h4>
                 <Carousel

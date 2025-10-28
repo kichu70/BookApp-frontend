@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Carousel from "react-material-ui-carousel";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { pink, red } from "@mui/material/colors";
+import Navbar from "../Navabar/Navbar";
 
 const AddtoCart = () => {
   const token = localStorage.getItem("token");
@@ -51,18 +52,6 @@ const AddtoCart = () => {
   prev.filter((id)=>id !== bookId):[...prev,bookId])
   }
 
-  // useEffect(() => {
-  //   if (cartItems && cartItems.length > 0) {
-  //     const totalPrice = cartItems.reduce((sum, item) => {
-  //       const price = parseFloat(item.price) || 0; //parseFloat used to make the string num to number without it ,the code will work but in case of string it not work
-  //       return sum + price;
-  //     }, 0);
-  //     setTotal(totalPrice);
-  //   } else {
-  //     setTotal(0);
-  //   }
-  // }, [cartItems]);
-
   const onOpen = () => {
     const show = document.getElementById("cart-products");
     show.classList.add("show");
@@ -84,7 +73,8 @@ const AddtoCart = () => {
     return ()=> document.removeEventListener("mousedown",handleClickOutseide);
   },[])
 
-  return (
+  return (<>
+    <Navbar/>
     <div className="cart-main">
       <button onClick={onOpen} className="Open-details"></button>
       <div className="cart-main1">
@@ -116,14 +106,6 @@ const AddtoCart = () => {
                         },
                       }}
                     />
-                    {/* 
-                   <Button
-                          color="error"
-                          className="removebtn2"
-                          onClick={() => removeFromCart(book.id)}
-                        >
-                          <DeleteIcon />
-                        </Button> */}
                   </div>
                 </li>
               ))}
@@ -137,9 +119,7 @@ const AddtoCart = () => {
           </div>
         </div>
         <div className="cart-cnt">
-          <button className="goback" onClick={() => navigate("/")}>
-            Home
-          </button>
+
           <h1 className="noItems">{cart}</h1>
           {cartItems.map((book) => (
             <div className="content" key={book.id}>
@@ -200,6 +180,7 @@ const AddtoCart = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

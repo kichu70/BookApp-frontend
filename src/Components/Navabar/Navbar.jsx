@@ -7,6 +7,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const { logout } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleclickOutside = (e) => {
@@ -20,7 +21,17 @@ const Navbar = () => {
     };
   }, []);
 
-  const navigate = useNavigate();
+
+  const handleClick =(sectionId)=>{
+    const section =document.getElementById(sectionId)
+    if(section){
+      section.scrollIntoView({behavior:"smooth"})
+    }else{
+      navigate("/")
+
+    }
+    
+  }
   return (
     <div className="nav-main">
       &nbsp;
@@ -30,9 +41,9 @@ const Navbar = () => {
         </div>
         <div className="navbar-div2">
           <div className="navbar-div3">
-            <button>home</button>
-            <button>Books</button>
-            <button>Aboutus</button>
+            <button onClick={()=>handleClick("home")}>home</button>
+            <button onClick={()=>handleClick("books")}>Books</button>
+            <button onClick={()=>handleClick("")}>Aboutus</button>
             <button onClick={() => navigate("/add-book")}>Add-Book</button>
             <button onClick={logout}>Logout</button>
             <button onClick={() => navigate("/add-cart")}>
@@ -50,11 +61,11 @@ const Navbar = () => {
           </div>{" "}
           {menuOpen && (
             <div ref={menuRef} className="mblMenu" id="mblMenu">
-              <button>home</button>
-              <button>Books</button>
-              <button>Aboutus</button>
-              <button>Add-Book</button>
-              <button onClick={logout}>Logout</button>
+            <button onClick={()=>handleClick("home")}>home</button>
+            <button onClick={()=>handleClick("books")}>Books</button>
+            <button onClick={()=>handleClick("")}>Aboutus</button>
+            <button onClick={() => navigate("/add-book")}>Add-Book</button>
+            <button onClick={logout}>Logout</button>
             </div>
           )}
         </div>

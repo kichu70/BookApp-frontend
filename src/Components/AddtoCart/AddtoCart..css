@@ -66,13 +66,13 @@
   border: none;
   padding: 10px;
   position: fixed;
-  top: 0;
-  right: -20px;
+  top: -3px;
+  right: -1px;
   display: flex;
-  width: 50px;
+  width: 20px;
   flex-direction: column;
   border-radius: 5px;
-  height: 100vh;
+  height: 110vh;
 }
 h2 p {
   color: rgb(52, 137, 52);

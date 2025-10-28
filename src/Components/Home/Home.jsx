@@ -15,7 +15,7 @@ const handleClick =(sectionId)=>{
   }
 }
   return (
-    <div className="main">
+    <div className="main" id="home">
       <div className="home-main">
         <Navbar />
         <h1 className="head-content">
