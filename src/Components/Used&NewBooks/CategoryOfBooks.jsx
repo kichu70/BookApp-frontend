@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./CategoryOfBooks.css";
 import { Card, CardMedia, CardContent } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CategoryOfBooks = () => {
   const [books, setBooks] = useState([]);
@@ -30,6 +31,9 @@ const CategoryOfBooks = () => {
   // duplicate 2-3 times for seamless scroll
   const displayBooks2 = [...books2, ...books2, ...books2];
   const displayBooks = [...books, ...books, ...books];
+  const navigate =useNavigate()
+
+
   
   return (
     <div className="category">
@@ -37,7 +41,7 @@ const CategoryOfBooks = () => {
     <div className="slider" >
       <div className="slide-track">
         {displayBooks.map((book, idx) => (
-          <Card className="slide" key={idx}>
+          <Card  onClick={()=>navigate("/")} className="slide" key={idx}>
             <h4>{book.bookname}</h4>
             {book.image && book.image[0] && (
               <CardMedia
