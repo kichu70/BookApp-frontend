@@ -1,59 +1,184 @@
-import { Button, Card, CardContent, CardMedia, Typography } from '@mui/material'
-import React from 'react'
-import "./SingleBook.css"
+import {
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import "./SingleBook.css";
+import { useNavigate, useParams } from "react-router-dom";
+import axios, { all } from "axios";
+import Carousel from "react-material-ui-carousel";
+import Navbar from "../Navabar/Navbar";
+import { jwtDecode } from "jwt-decode";
+import { toast } from "react-toastify";
+import { useAuth } from "../../auth/AuthContext";
 
 const SingleBook = () => {
+  const notify = () => toast.dark("Book Have been deleted");
+  const notify2 = () => toast.dark("Book is not deleted");
+  const [books, setBooks] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+
+  const [deleteId, setDeleteId] = useState(null);
+  const [openConfirm, setOpenConfirm] = useState(false);
+
+  const [editId, setEditId] = useState(null);
+  const [selectBook, setSelectBook] = useState(null);
+  const [openEdit, setopenEdit] = useState(false);
+  const { addToCart } = useAuth();
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [book, setBook] = useState([]);
+  const [userId, setUserId] = useState(null);
+
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    const getdata = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/Books/single-book/?id=${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const allbook = res.data.data;
+        setBook(allbook[0]);
+        console.log("all books ", allbook);
+      } catch (err) {
+        console.log(err, "error is in the single-bok");
+      }
+    };
+    getdata();
+  }, [id, token]);
+  // -----------------------------
+  // ------delete book----------------
+
+  const handleDeleteClick = (id) => {
+    setDeleteId(id);
+    setOpenConfirm(true);
+  };
+
+  const onhandledelete = (id) => {
+    if (!deleteId) return;
+    try {
+      const dltdata = async () => {
+        const res = await axios.put(
+          `http://localhost:5000/Books/delete-book/?id=${deleteId}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setBooks((prev) => prev.filter((p) => p.id !== deleteId));
+        console.log(res.data, "deleted");
+        notify();
+      };
+      dltdata();
+    } catch (err) {
+      console.log(err, "error is in the delete function");
+    } finally {
+      setOpenConfirm(false);
+      setDeleteId(null);
+    }
+  };
+  // -----------update book------------------------
+
+  const handleUpdate = (id, books) => {
+    setEditId(id);
+    setSelectBook(books);
+    setopenEdit(true);
+  };
+
+  // ----------getid----------
+  useEffect(() => {
+    if (token) {
+      try {
+        const decode = jwtDecode(token);
+        setUserId(decode.id);
+      } catch (err) {
+        console.log(err, "error is in the taiking id from the token");
+      }
+    }
+  }, [token]);
   return (
     <div>
-       <div className="body">
-    <div className="content1">
-      <div className="Card1">
-      <Card className="cardbox">
-        <h4 className="title"></h4>
-        <CardMedia
-          className="CardMedia"
-          sx={{ width: "100%", objectFit: "contain" }}
-          height="240px"
-          image=""
-          component="img"
-          title="green iguana"
-        />
-          <h3 className="price">₹</h3>
-        <CardContent>
-          <Typography
-            className="discription"
-            variant="body2"
-            sx={{ color: "text.secondary" }}
-          >
+      <Navbar />
+      <div className="single-book">
+        <div className="single-book2">
+          <div className="single-content">
+            <div className="imagesdiv">
+            <Carousel
+              autoPlay={false}
+              interval={3000}
+              navButtonsAlwaysVisible={false}
+              // indicators={false}
+              index={0}
+              className="carousel"
+            >
+              {(Array.isArray(book.image) ? book.image : [book.image])?.map(
+                (img, index) => (
+                  <img
+                    src={`http://localhost:5000/${img}`}
+                    className="imgs"
+                    key={img}
+                    title={`${book.bookname} - ${index + 1}`}
+                    alt=""
+                  />
+                )
+              )}
+            </Carousel>
+            </div>
+             <h1>{book.bookname}</h1>
+            <h2 className="price">₹{book.price}</h2>
+            <h4 className="single-decsription">{book.description}</h4>
+            {book.user === userId && (
+              <div className="btns">
+                <Button
+                  className="dltbtn"
+                  variant="contained"
+                  size="small"
+                  onClick={() => handleDeleteClick(book.id)}
+                >
+                  delete
+                </Button>
+                <Button
+                  className="editbtn"
+                  variant="contained"
+                  size="small"
+                  onClick={() => handleUpdate(book.id, book)}
+                >
+                  edit
+                </Button>
+              </div>
+            )}
+            {book.user !== userId && (
+              <div className="buybtn">
+                <Button className="buynow" variant="contained">
+                  Buy Now
+                </Button>
+                <Button
+                  className="add-to-cart"
+                  variant="contained"
+                  onClick={() => addToCart(book)}
+                >
+                  Add to Cart
+                </Button>
+              </div>
+            )}
+          </div>
+          <div className="single-details">
            
-          </Typography>
-        </CardContent>
-
-        <div className="btns">
-          <Button onClick={''} className="mblgtn" variant="contained" size="small">
-            go back
-          </Button>
-        </div>
-      </Card>
-      </div>
-      <div className="card">
-        <div className="imageDiv">
-          <img src={''} alt="" />
-        </div>
-        <div className="pera">
-          <h1></h1>
-          <div>
-            <h2>₹</h2>
-            <h5></h5>
-            <p></p>
-            <button onClick={''}>go back </button>
           </div>
         </div>
       </div>
     </div>
-    </div>
-    </div>
-  )
-}
+  );
+};
 
-export default SingleBook
+export default SingleBook;

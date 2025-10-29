@@ -41,7 +41,7 @@ const CategoryOfBooks = () => {
     <div className="slider" >
       <div className="slide-track">
         {displayBooks.map((book, idx) => (
-          <Card  onClick={()=>navigate("/")} className="slide" key={idx}>
+          <Card   onClick={()=>navigate(`/single-book/${book._id}`)}className="slide" key={idx}>
             <h4>{book.bookname}</h4>
             {book.image && book.image[0] && (
               <CardMedia
@@ -62,7 +62,7 @@ const CategoryOfBooks = () => {
      <div className="slider2" >
       <div className="slide-track2">
         {displayBooks2.map((book, idx) => (
-          <Card className="slide2" key={idx}>
+          <Card className="slide2" key={idx}  onClick={()=>navigate(`/single-book/${book._id}`)}>
             <h4>{book.bookname}</h4>
             {book.image && book.image[0] && (
               <CardMedia

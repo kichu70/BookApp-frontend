@@ -6,6 +6,7 @@ import Login from "./Components/Login/Login";
 import AddBook from "./Components/AddBook/AddBook";
 import HomePage from "./Pages/HomePage/HomePage";
 import AddtoCart from "./Components/AddtoCart/AddtoCart";
+import SingleBook from "./Components/SingleBook/SingleBook";
 
 function App() {
   const { user } = useAuth();
@@ -18,6 +19,7 @@ function App() {
           <Route path='/' element={user ? <HomePage />: <Navigate to="/login" />} />
           <Route path='/add-book' element={user ? <AddBook/>: <Navigate to="/login" />} />
           <Route path='/add-cart' element={user ? <AddtoCart/>: <Navigate to="/login" />} />
+          <Route path='/single-book/:id' element={user ? <SingleBook/>: <Navigate to="/login" />} />
         </Routes>
       </BrowserRouter>
     </div>

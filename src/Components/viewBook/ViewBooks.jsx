@@ -15,6 +15,7 @@ import EditBook from "../EditBook/EditBook";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import addToCart from "../AddtoCart/AddtoCart";
 import { useAuth } from "../../auth/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const ViewBooks = () => {
   const notify = () => toast.dark("Book Have been deleted");
@@ -31,6 +32,7 @@ const ViewBooks = () => {
   const [selectBook, setSelectBook] = useState(null);
   const [openEdit, setopenEdit] = useState(false);
   const {addToCart}=useAuth()
+  const naviagte =useNavigate()
   // ------delete book----------------
   
   const handleDeleteClick = (id) => {
@@ -121,7 +123,7 @@ const ViewBooks = () => {
           {books.map((book) => (
             <div id="books" className="content" key={book.id}>
               <Card className="Card">
-                <h4 className="bookname">{book.bookname}</h4>
+                <h4 className="bookname"  onClick={()=>naviagte(`/single-book/${book.id}`)}>{book.bookname}</h4>
                 <Carousel
                   autoPlay={true}
                   interval={3000}
@@ -138,12 +140,13 @@ const ViewBooks = () => {
                         image={`http://localhost:5000/${img}`}
                         component="img"
                         title={`${book.bookname} - ${index + 1}`}
+                         onClick={()=>naviagte(`/single-book/${book.id}`)}
                       />
                     )
                   )}
                 </Carousel>
 
-                <CardContent>
+                <CardContent  onClick={()=>naviagte(`/single-book/${book.id}`)}>
                   <h3 className="price">₹ {book.price}</h3>
 
                   <Typography
