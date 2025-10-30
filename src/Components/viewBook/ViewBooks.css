@@ -5,6 +5,7 @@
   margin: 150px auto 0;
   gap: 15px;
   max-width: 1250px;
+  padding: 20px;
 }
 .Card {
   max-width: 100% !important;

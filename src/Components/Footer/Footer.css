@@ -1,7 +1,40 @@
 .footer{
     height: 400px;
     width: 100%;
-    background-color: black;
+    background:linear-gradient(rgb(209, 171, 101),rgb(210, 127, 59));
     position: absolute;
-    
+    margin: 0;
+}
+.footer2{
+padding: 50px 0 0 0;
+color: bisque;
+}
+.footer h1{
+    color:white;
+}
+.footer-div2{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+}
+.media-btns{
+       align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.media-btn{
+    color: beige !important;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.media-cnt{
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
