@@ -38,7 +38,7 @@ const handleClick =(sectionId)=>{
         <ViewBooks />
       </div>
       &nbsp;
-
+<Footer/>
     </div>
   );
 };
