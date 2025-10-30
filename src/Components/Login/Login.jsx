@@ -2,6 +2,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
+import { ToastContainer } from "react-toastify";
 
 const Login = () => {
   const [error, setError] = useState(false);
@@ -30,7 +31,7 @@ const Login = () => {
   return (
     <div>
       <div className="singUpMain">
-        .
+        <ToastContainer/>
         <div className="signup">
           <div className="content1">
             <h1>Login</h1>

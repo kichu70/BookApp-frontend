@@ -1,12 +1,13 @@
 .singUpMain{
     background:url("../../Images/signupBg.jpg")no-repeat center ;
     background-size: cover;
-    height: 110vh;
+    height: auto;
+    min-height: 110vh;
 }
 .signup{
     display: flex;
     max-width: 500px;
-    margin: 8vh auto;
+    margin: 8vh auto 0;
 }
 .content1{
     border: .5px solid peachpuff;
