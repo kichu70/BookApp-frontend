@@ -42,9 +42,9 @@ const Navbar = () => {
         <div className="navbar-div2">
           <div className="navbar-div3">
             <button onClick={()=>handleClick("home")}>home</button>
-            <button onClick={()=>handleClick("books")}>Books</button>
-            <button onClick={()=>handleClick("")}>Aboutus</button>
-            <button onClick={() => navigate("/add-book")}>Add-Book</button>
+            <button onClick={()=>navigate("/all-books")}>Books</button>
+            <button onClick={() => navigate("/add-book")}>Add Book</button>
+            <button onClick={()=>handleClick("footer")}>Contact Us</button>
             <button onClick={logout}>Logout</button>
             <button onClick={() => navigate("/add-cart")}>
               <ShoppingCartIcon />
@@ -62,9 +62,9 @@ const Navbar = () => {
           {menuOpen && (
             <div ref={menuRef} className="mblMenu" id="mblMenu">
             <button onClick={()=>handleClick("home")}>home</button>
-            <button onClick={()=>handleClick("books")}>Books</button>
-            <button onClick={()=>handleClick("")}>Aboutus</button>
-            <button onClick={() => navigate("/add-book")}>Add-Book</button>
+            <button onClick={() => navigate("/add-book")}>Books</button>
+            <button onClick={()=>handleClick("footer")}>ContactUs</button>
+            <button onClick={() => navigate("/add-book")}>Add Book</button>
             <button onClick={logout}>Logout</button>
             </div>
           )}

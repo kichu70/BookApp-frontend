@@ -9,7 +9,8 @@
 }
 .Card {
   max-width: 100% !important;
-  min-height: 400px !important;
+  height: 500px !important;
+  overflow: hidden;
   margin: 15px auto;
   padding: 20px;
   border-radius: 20px !important;
@@ -19,12 +20,13 @@
   margin: 0 0 20px;
 }
 .bookname {
-  /* color: aqua; */
   text-transform: capitalize;
-  /* text-align: center; */
   margin-left: 10px;
   font-family: cursive;
   font-size: 18px;
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .Card:hover {
   box-shadow: rgb(181, 172, 118) 0 0 20px !important;
@@ -33,7 +35,6 @@
 }
 .btns {
   display: flex !important;
-  /* gap: 50px; */
   justify-content: space-evenly;
   margin: 20px auto !important;
   width: 100%;

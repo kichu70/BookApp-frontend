@@ -31,7 +31,7 @@ const Login = () => {
   return (
     <div>
       <div className="singUpMain">
-        <ToastContainer/>
+        <ToastContainer/>.
         <div className="signup">
           <div className="content1">
             <h1>Login</h1>

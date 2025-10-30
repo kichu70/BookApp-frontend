@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import InstagramIcon from '@mui/icons-material/Instagram';
 const Footer = () => {
   return (
-    <div className="footer">
+    <div className="footer" id='footer'>
       <div className='footer2'>
         <div className='footer-div2'>
           <h1>Contact Us</h1>

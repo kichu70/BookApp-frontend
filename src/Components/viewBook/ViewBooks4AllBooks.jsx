@@ -18,8 +18,9 @@ import { useAuth } from "../../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { handlePayment } from "../Payment/PaymentButton";
 import Footer from "../Footer/Footer";
+import "./ViewBooks4AllBook.css"
 
-const ViewBooks = () => {
+const ViewBooks4AllBooks = () => {
   const notify = () => toast.dark("Book Have been deleted");
   const notify2 = () => toast.dark("Book is not deleted");
   const [books, setBooks] = useState([]);
@@ -38,6 +39,8 @@ const ViewBooks = () => {
 
 
   const [page, setPage] = useState(1);
+ const [totalPage, setTotalPage] = useState(1);
+
 
 
 
@@ -104,7 +107,7 @@ const ViewBooks = () => {
   useEffect(() => {
     const FechData = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/Books/?page=${page}&limit=4`, {
+        const res = await axios.get(`http://localhost:5000/Books/?page=${page}&limit=8`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -115,12 +118,13 @@ const ViewBooks = () => {
         }));
         console.log(idreplace);
         setBooks(idreplace);
+        setTotalPage(res.data.totalPage)
       } catch (err) {
         console.log(err, "error is in the fetching data");
       }
     };
     FechData();
-  }, [refresh]);
+  }, [page,refresh]);
 
 
   // ---------------addToCatr----------------------
@@ -128,7 +132,7 @@ const ViewBooks = () => {
   return (
     <div>
       <div className="section1-newbook">
-        <div className="grids">
+        <div className="gridss">
           {books.map((book) => (
             <div id="books" className="content" key={book.id}>
               <Card className="Card">
@@ -232,8 +236,29 @@ const ViewBooks = () => {
           />
         )}
       </div>
+       <div className="pagination">
+        <button
+        className="pages"
+          onClick={() => setPage((p) => Math.max(p - 1, 1))}
+          disabled={page === 1}
+        >
+          Prev
+        </button>
+
+        <span style={{ margin: "0 10px" }}>
+          {page} / {totalPage}
+        </span>
+
+        <button
+        className="pages"
+          onClick={() => setPage((p) => Math.min(p + 1, totalPage))}
+          disabled={page === totalPage}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
 
-export default ViewBooks;
+export default ViewBooks4AllBooks;

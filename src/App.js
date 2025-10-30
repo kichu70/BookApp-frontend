@@ -10,6 +10,7 @@ import SingleBook from "./Components/SingleBook/SingleBook";
 import { ToastContainer } from "react-toastify";
 import Cancel from "./Components/Payment/Cancel";
 import Success from "./Components/Payment/Success";
+import AllBooks from "./Components/Books/AllBooks";
 
 function App() {
   const { user } = useAuth();
@@ -22,6 +23,7 @@ function App() {
           <Route path='/' element={user ? <HomePage />: <Navigate to="/login" />} />
           <Route path='/add-book' element={user ? <AddBook/>: <Navigate to="/login" />} />
           <Route path='/add-cart' element={user ? <AddtoCart/>: <Navigate to="/login" />} />
+          <Route path='/all-books' element={user ? <AllBooks/>: <Navigate to="/login" />} />
           <Route path='/single-book/:id' element={user ? <SingleBook/>: <Navigate to="/login" />} />
           <Route path='/success' element={<Success />} />
           <Route path='/cancel' element={<Cancel />} />
