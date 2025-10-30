@@ -53,7 +53,7 @@ const ViewBooks = () => {
     try {
       const dltdata = async () => {
         const res = await axios.put(
-          `http://localhost:5000/Books/delete-book/?id=${deleteId}`,
+          `https://bookapp-backend-1-2jhn.onrender.com/Books/delete-book/?id=${deleteId}`,
           {},
           {
             headers: {
@@ -104,7 +104,7 @@ const ViewBooks = () => {
   useEffect(() => {
     const FechData = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/Books/?page=${page}&limit=4`, {
+        const res = await axios.get(`https://bookapp-backend-1-2jhn.onrender.com/Books/?page=${page}&limit=4`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -146,7 +146,7 @@ const ViewBooks = () => {
                         className="CardMedia"
                         sx={{ width: "100%", objectFit: "contain" }}
                         height="240px"
-                        image={`http://localhost:5000/${img}`}
+                        image={`https://bookapp-backend-1-2jhn.onrender.com/${img}`}
                         component="img"
                         title={`${book.bookname} - ${index + 1}`}
                          onClick={()=>naviagte(`/single-book/${book.id}`)}
