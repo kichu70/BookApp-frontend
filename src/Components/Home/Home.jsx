@@ -5,6 +5,7 @@ import cntImg1 from "../../Images/bgImg2.jpeg";
 import cntImg2 from "../../Images/bgImg3.jpeg";
 import ViewBooks from "../viewBook/ViewBooks";
 import CategoryOfBooks from "../Used&NewBooks/CategoryOfBooks";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
 
@@ -37,6 +38,7 @@ const handleClick =(sectionId)=>{
         <ViewBooks />
       </div>
       &nbsp;
+
     </div>
   );
 };

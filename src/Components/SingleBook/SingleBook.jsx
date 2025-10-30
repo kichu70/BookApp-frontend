@@ -14,11 +14,14 @@ import Navbar from "../Navabar/Navbar";
 import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
 import { useAuth } from "../../auth/AuthContext";
+import { handlePayment } from "../Payment/PaymentButton";
+import EditBook from "../EditBook/EditBook";
+import Confirm from "../Confirm/Confirm";
 
 const SingleBook = () => {
   const notify = () => toast.dark("Book Have been deleted");
   const notify2 = () => toast.dark("Book is not deleted");
-  const [books, setBooks] = useState([]);
+  const [book, setBook] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
   const [deleteId, setDeleteId] = useState(null);
@@ -30,7 +33,6 @@ const SingleBook = () => {
   const { addToCart } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
-  const [book, setBook] = useState([]);
   const [userId, setUserId] = useState(null);
 
   const token = localStorage.getItem("token");
@@ -56,7 +58,6 @@ const SingleBook = () => {
   }, [id, token]);
   // -----------------------------
   // ------delete book----------------
-
   const handleDeleteClick = (id) => {
     setDeleteId(id);
     setOpenConfirm(true);
@@ -75,17 +76,23 @@ const SingleBook = () => {
             },
           }
         );
-        setBooks((prev) => prev.filter((p) => p.id !== deleteId));
+        setBook((prev) => prev.filter((p) => p.id !== deleteId));
         console.log(res.data, "deleted");
         notify();
       };
       dltdata();
+      navigate("/")
     } catch (err) {
       console.log(err, "error is in the delete function");
     } finally {
       setOpenConfirm(false);
       setDeleteId(null);
     }
+  };
+
+  // ---------------------
+   const reloadComponent = () => {
+    setRefresh((prev) => !prev);
   };
   // -----------update book------------------------
 
@@ -117,23 +124,26 @@ const SingleBook = () => {
               autoPlay={false}
               interval={3000}
               navButtonsAlwaysVisible={false}
-              // indicators={false}
               index={0}
               className="carousel"
             >
+           
               {(Array.isArray(book.image) ? book.image : [book.image])?.map(
                 (img, index) => (
-                  <img
-                    src={`http://localhost:5000/${img}`}
-                    className="imgs"
-                    key={img}
-                    title={`${book.bookname} - ${index + 1}`}
-                    alt=""
-                  />
+                       <CardMedia
+                        key={img}
+                        className="CardMedia"
+                        sx={{ width: "100%", objectFit: "contain" }}
+                        height="240px"
+                        image={`http://localhost:5000/${img}`}
+                        component="img"
+                        title={`${book.bookname} - ${index + 1}`}
+                      />
                 )
               )}
             </Carousel>
             </div>
+            <div className="single-details">
              <h1>{book.bookname}</h1>
             <h2 className="price">₹{book.price}</h2>
             <h4 className="single-decsription">{book.description}</h4>
@@ -143,7 +153,7 @@ const SingleBook = () => {
                   className="dltbtn"
                   variant="contained"
                   size="small"
-                  onClick={() => handleDeleteClick(book.id)}
+                  onClick={() => handleDeleteClick(book._id)}
                 >
                   delete
                 </Button>
@@ -151,7 +161,7 @@ const SingleBook = () => {
                   className="editbtn"
                   variant="contained"
                   size="small"
-                  onClick={() => handleUpdate(book.id, book)}
+                  onClick={() => handleUpdate(book._id, book)}
                 >
                   edit
                 </Button>
@@ -159,7 +169,7 @@ const SingleBook = () => {
             )}
             {book.user !== userId && (
               <div className="buybtn">
-                <Button className="buynow" variant="contained">
+                <Button className="buynow" variant="contained"onClick={() => handlePayment([book])}>
                   Buy Now
                 </Button>
                 <Button
@@ -172,11 +182,32 @@ const SingleBook = () => {
               </div>
             )}
           </div>
-          <div className="single-details">
-           
           </div>
         </div>
       </div>
+       <Confirm
+          open={openConfirm}
+          onConfirm={onhandledelete}
+          onCancel={() => {
+            setOpenConfirm(false);
+            notify2();
+            setDeleteId(null);
+          }}
+        />
+        {openEdit && (
+          <EditBook
+            open={openEdit}
+            book={selectBook}
+            id={editId}
+            onClose={(updateBook) => {
+              setopenEdit(false);
+              if (updateBook) {
+                setBook(updateBook);
+                
+              }
+            }}
+          />
+        )}
     </div>
   );
 };

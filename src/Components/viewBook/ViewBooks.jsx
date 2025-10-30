@@ -16,6 +16,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import addToCart from "../AddtoCart/AddtoCart";
 import { useAuth } from "../../auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { handlePayment } from "../Payment/PaymentButton";
+import Footer from "../Footer/Footer";
 
 const ViewBooks = () => {
   const notify = () => toast.dark("Book Have been deleted");
@@ -33,6 +35,14 @@ const ViewBooks = () => {
   const [openEdit, setopenEdit] = useState(false);
   const {addToCart}=useAuth()
   const naviagte =useNavigate()
+
+
+  const [page, setPage] = useState(1);
+ const [totalPage, setTotalPage] = useState(1);
+
+
+
+
   // ------delete book----------------
   
   const handleDeleteClick = (id) => {
@@ -56,6 +66,7 @@ const ViewBooks = () => {
         setBooks((prev) => prev.filter((p) => p.id !== deleteId));
         console.log(res.data, "deleted");
         notify();
+        naviagte("/")
       };
       dltdata();
     } catch (err) {
@@ -95,7 +106,7 @@ const ViewBooks = () => {
   useEffect(() => {
     const FechData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/Books/", {
+        const res = await axios.get(`http://localhost:5000/Books/?page=${page}&limit=8`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -106,12 +117,13 @@ const ViewBooks = () => {
         }));
         console.log(idreplace);
         setBooks(idreplace);
+        setTotalPage(res.data.totalPage)
       } catch (err) {
         console.log(err, "error is in the fetching data");
       }
     };
     FechData();
-  }, [refresh]);
+  }, [page,refresh]);
 
 
   // ---------------addToCatr----------------------
@@ -186,7 +198,7 @@ const ViewBooks = () => {
                 )}
                 {book.user !== userId && (
                   <div className="buybtn">
-                    <Button className="buynow" variant="contained">Buy Now</Button>
+                    <Button onClick={() => handlePayment([book])} className="buynow" variant="contained">Buy Now</Button>
                     <Button className="add-to-cart" variant="contained" onClick={()=>addToCart(book)}>Add to Cart</Button>
                   </div>
                 )}
@@ -222,6 +234,27 @@ const ViewBooks = () => {
             }}
           />
         )}
+      </div>
+       <div className="pagination">
+        <button
+        className="pages"
+          onClick={() => setPage((p) => Math.max(p - 1, 1))}
+          disabled={page === 1}
+        >
+          Prev
+        </button>
+
+        <span style={{ margin: "0 10px" }}>
+          {page} / {totalPage}
+        </span>
+
+        <button
+        className="pages"
+          onClick={() => setPage((p) => Math.min(p + 1, totalPage))}
+          disabled={page === totalPage}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
