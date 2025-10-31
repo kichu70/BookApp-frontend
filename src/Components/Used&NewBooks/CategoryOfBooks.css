@@ -15,6 +15,7 @@
   text-shadow:  0 0 20px;
   font-family: cursive;
   color: rgb(82, 47, 20);
+  
 }
 .slide-track {
   display: flex;
@@ -34,7 +35,14 @@
   height: 150px;
   object-fit: cover;
 }
-
+.slide h4{
+    white-space: nowrap;
+  padding: 0 10px 0;
+    -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 @keyframes scroll {
   0% {
     transform: translateX(0);
@@ -80,6 +88,14 @@
   text-align: center;
 }
 
+.slide2 h4{
+    white-space: nowrap;
+    -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 10px 0;
+}
 .card-media {
   height: 150px;
   object-fit: cover;

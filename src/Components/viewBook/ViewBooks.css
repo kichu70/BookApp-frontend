@@ -34,6 +34,7 @@
 .discription {
   max-width: 300px;
     display: -webkit-box;
+    
   -webkit-line-clamp: 2; /* Show only 3 lines */
   -webkit-box-orient: vertical;
   overflow: hidden;

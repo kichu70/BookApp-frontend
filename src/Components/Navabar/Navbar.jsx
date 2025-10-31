@@ -62,7 +62,7 @@ const Navbar = () => {
           {menuOpen && (
             <div ref={menuRef} className="mblMenu" id="mblMenu">
             <button onClick={()=>handleClick("home")}>home</button>
-            <button onClick={() => navigate("/add-book")}>Books</button>
+            <button onClick={() => navigate("/all-books")}>Books</button>
             <button onClick={()=>handleClick("footer")}>ContactUs</button>
             <button onClick={() => navigate("/add-book")}>Add Book</button>
             <button onClick={logout}>Logout</button>
