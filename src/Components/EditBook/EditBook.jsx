@@ -24,7 +24,7 @@ useEffect(()=>{
 },[book])
 const UpdateBook = async()=>{
   try{
-    const res =await axios.put(`https://bookapp-backend-1-2jhn.onrender.com/Books/upadte-book?id=${id}`,
+    const res =await axios.put(`http://localhost:5000/Books/upadte-book?id=${id}`,
       {
         author:bookAuthor,
         bookname:bookName,

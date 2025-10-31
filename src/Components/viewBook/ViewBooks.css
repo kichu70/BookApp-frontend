@@ -24,7 +24,18 @@
   margin-left: 10px;
   font-family: cursive;
   font-size: 18px;
-    white-space: nowrap;
+  white-space: nowrap;
+    -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+.discription {
+  max-width: 300px;
+    display: -webkit-box;
+  -webkit-line-clamp: 2; /* Show only 3 lines */
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -56,53 +67,49 @@
 }
 .editbtn {
   width: 100%;
-  /* background-color: rgb(236, 96, 20) !important; */
   font-family: cursive !important;
   box-shadow: rgb(151, 133, 111) 0 0 10px !important ;
 }
-.price{
+.price {
   color: green;
 }
-.buybtn{
+.buybtn {
   display: flex;
   justify-content: space-evenly;
   gap: 20px;
 }
-.buynow{
-   color: rgb(223, 221, 221) !important;
+.buynow {
+  color: rgb(223, 221, 221) !important;
   font-weight: 300 !important;
-  /* width: 100%;
-  height: 40px; */
   background-color: rgb(105, 171, 105) !important;
 }
-.add-to-cart{
+.add-to-cart {
   background-color: rgb(129, 123, 120) !important;
-  color:rgb(223, 221, 221)!important;
+  color: rgb(223, 221, 221) !important;
   font-weight: 300 !important;
-    /* width: 100%;
-  height: 40px */
 }
 
-.pages{
+.pages {
   font-size: 16px !important;
   color: rgb(131, 121, 110);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   border: none;
   background: none;
   border-bottom: 2px solid rgb(151, 107, 10);
   border-radius: 5px;
 }
-.pagination{
+.pagination {
   max-width: fit-content;
   margin: 50px auto;
-  padding:50px ;
-}.pagination span{
+  padding: 50px;
+}
+.pagination span {
   font-family: cursive;
   color: rgb(71, 63, 52);
 }
-.pages:hover{
+.pages:hover {
   border-bottom: 2px solid rgb(242, 60, 19);
   transform: scale(1.1);
   color: rgb(223, 194, 25);
-  transition: .3s;
+  transition: 0.3s;
 }

@@ -40,7 +40,7 @@ const SingleBook = () => {
     const getdata = async () => {
       try {
         const res = await axios.get(
-          `https://bookapp-backend-1-2jhn.onrender.com/Books/single-book/?id=${id}`,
+          `http://localhost:5000/Books/single-book/?id=${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -68,7 +68,7 @@ const SingleBook = () => {
     try {
       const dltdata = async () => {
         const res = await axios.put(
-          `https://bookapp-backend-1-2jhn.onrender.com/Books/delete-book/?id=${deleteId}`,
+          `http://localhost:5000/Books/delete-book/?id=${deleteId}`,
           {},
           {
             headers: {
@@ -135,7 +135,7 @@ const SingleBook = () => {
                         className="CardMedia"
                         sx={{ width: "100%", objectFit: "contain" }}
                         height="240px"
-                        image={`https://bookapp-backend-1-2jhn.onrender.com/${img}`}
+                        image={`http://localhost:5000/${img}`}
                         component="img"
                         title={`${book.bookname} - ${index + 1}`}
                       />

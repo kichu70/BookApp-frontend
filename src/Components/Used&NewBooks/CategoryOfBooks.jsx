@@ -11,7 +11,7 @@ const CategoryOfBooks = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const res = await axios.get("https://bookapp-backend-1-2jhn.onrender.com/Books/new-book", {
+      const res = await axios.get("http://localhost:5000/Books/new-book", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBooks(res.data.data);
@@ -20,7 +20,7 @@ const CategoryOfBooks = () => {
   }, []);
   useEffect(() => {
     const fetchBooks2 = async () => {
-      const res = await axios.get("https://bookapp-backend-1-2jhn.onrender.com/Books/used-book", {
+      const res = await axios.get("http://localhost:5000/Books/used-book", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBooks2(res.data.data);
@@ -46,7 +46,7 @@ const CategoryOfBooks = () => {
             {book.image && book.image[0] && (
               <CardMedia
                 component="img"
-                image={`https://bookapp-backend-1-2jhn.onrender.com/${book.image[0]}`}
+                image={`http://localhost:5000/${book.image[0]}`}
                 alt={book.bookname}
                 className="card-media"
               />
@@ -67,7 +67,7 @@ const CategoryOfBooks = () => {
             {book.image && book.image[0] && (
               <CardMedia
                 component="img"
-                image={`https://bookapp-backend-1-2jhn.onrender.com/${book.image[0]}`}
+                image={`http://localhost:5000/${book.image[0]}`}
                 alt={book.bookname}
                 className="card-media"
               />

@@ -158,7 +158,7 @@ const AddtoCart = () => {
                         className="CardMedia"
                         sx={{ width: "100%", objectFit: "contain" }}
                         height="240px"
-                        image={`https://bookapp-backend-1-2jhn.onrender.com/${img}`}
+                        image={`http://localhost:5000/${img}`}
                         component="img"
                         title={`${book.bookname} - ${index + 1}`}
                       />

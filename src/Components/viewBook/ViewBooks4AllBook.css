@@ -7,17 +7,16 @@
   max-width: 1250px;
   padding: 20px;
 }
-
-
-@media (max-width: 993px) {
-.gridss{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.Card1{
+  max-width: 100% !important;
+  height: 500px !important;
+  overflow: hidden;
+  margin: 15px auto;
+  padding: 20px;
+  border-radius: 20px !important;
+  box-shadow: rgb(181, 172, 118) 0 0 10px !important;
 }
-
-}
-
-@media (max-width: 769px){
+@media (max-width: 1203px) {
 .gridss{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -25,7 +24,15 @@
 
 }
 
-@media (max-width: 587px)  {
+@media (max-width: 799px){
+.gridss{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+}
+
+@media (max-width: 727px)  {
 
 .gridss{
   display: grid;
