@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from "react";
-import { Button } from "@mui/material";
+import { Button, Rating } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -53,7 +53,7 @@ const ViewBooks = () => {
     try {
       const dltdata = async () => {
         const res = await axios.put(
-          `https://bookapp-backend-1-2jhn.onrender.com/Books/delete-book/?id=${deleteId}`,
+          `https://bookapp-backend-wuwu.onrender.com/Books/delete-book/?id=${deleteId}`,
           {},
           {
             headers: {
@@ -104,7 +104,7 @@ const ViewBooks = () => {
   useEffect(() => {
     const FechData = async () => {
       try {
-        const res = await axios.get(`https://bookapp-backend-1-2jhn.onrender.com/Books/?page=${page}&limit=4`, {
+        const res = await axios.get(`https://bookapp-backend-wuwu.onrender.com/?page=${page}&limit=4`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -146,7 +146,7 @@ const ViewBooks = () => {
                         className="CardMedia"
                         sx={{ width: "100%", objectFit: "contain" }}
                         height="240px"
-                        image={`https://bookapp-backend-1-2jhn.onrender.com/${img}`}
+                        image={`https://bookapp-backend-wuwu.onrender.com/${img}`}
                         component="img"
                         title={`${book.bookname} - ${index + 1}`}
                          onClick={()=>naviagte(`/single-book/${book.id}`)}
@@ -156,6 +156,7 @@ const ViewBooks = () => {
                 </Carousel>
 
                 <CardContent  onClick={()=>naviagte(`/single-book/${book.id}`)}>
+             <Rating size="small" name="read-only-rating" value={book.avarageRating || 0} precision={0.1} readOnly/>
                   <h3 className="price">₹ {book.price}</h3>
 
                   <Typography

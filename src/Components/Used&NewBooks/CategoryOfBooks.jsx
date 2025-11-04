@@ -11,7 +11,7 @@ const CategoryOfBooks = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const res = await axios.get("https://bookapp-backend-1-2jhn.onrender.com/Books/new-book", {
+      const res = await axios.get("https://bookapp-backend-wuwu.onrender.com/Books/new-book", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBooks(res.data.data);
@@ -20,7 +20,7 @@ const CategoryOfBooks = () => {
   }, []);
   useEffect(() => {
     const fetchBooks2 = async () => {
-      const res = await axios.get("https://bookapp-backend-1-2jhn.onrender.com/Books/used-book", {
+      const res = await axios.get("https://bookapp-backend-wuwu.onrender.com/Books/used-book", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBooks2(res.data.data);
@@ -46,7 +46,7 @@ const CategoryOfBooks = () => {
             {book.image && book.image[0] && (
               <CardMedia
                 component="img"
-                image={`https://bookapp-backend-1-2jhn.onrender.com/${book.image[0]}`}
+                image={`https://bookapp-backend-wuwu.onrender.com/${book.image[0]}`}
                 alt={book.bookname}
                 className="card-media"
               />
@@ -58,7 +58,7 @@ const CategoryOfBooks = () => {
         ))}
       </div>
     </div>
-    <h1 id="used">Old Book's</h1>
+    <h1 id="used">Used Book's</h1>
      <div className="slider2" >
       <div className="slide-track2">
         {displayBooks2.map((book, idx) => (
@@ -67,7 +67,7 @@ const CategoryOfBooks = () => {
             {book.image && book.image[0] && (
               <CardMedia
                 component="img"
-                image={`https://bookapp-backend-1-2jhn.onrender.com/${book.image[0]}`}
+                image={`https://bookapp-backend-wuwu.onrender.com/${book.image[0]}`}
                 alt={book.bookname}
                 className="card-media"
               />

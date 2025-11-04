@@ -73,7 +73,7 @@ const removeFromCart = (bookId) => {
     // ----------
     const login=async(email,password)=>{
         try{
-            const res= await axios.post("https://bookapp-backend-1-2jhn.onrender.com/user/login",{
+            const res= await axios.post("https://bookapp-backend-wuwu.onrender.com/user/login",{
                 email,
                 password
             })
@@ -91,7 +91,7 @@ const removeFromCart = (bookId) => {
             toast.success("Login Successfull!!")
         }catch(err){
             console.log(err,"error is in the login page",{email,password})
-            toast.error("invalid username or password")
+            toast.error("invalid email or password")
         }
     }
 

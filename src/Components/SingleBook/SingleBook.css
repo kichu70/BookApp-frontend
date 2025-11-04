@@ -64,10 +64,18 @@
   border-radius: 10px;
   background-color: #f5f5f5; 
   display: block;
+
 }
 /* *--------------------------------- */
 
-
+.add-rating{
+  max-width: fit-content;
+  padding: 10px;
+  margin-top: 20px;
+  border-left:rgb(188, 159, 43) solid 2px;
+  border-right:rgb(165, 136, 19) solid 2px;
+  border-radius: 20px;
+}
 
 /* ------------------------- */
 
