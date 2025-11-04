@@ -53,7 +53,7 @@ const ViewBooks = () => {
     try {
       const dltdata = async () => {
         const res = await axios.put(
-          `https://bookapp-backend-wuwu.onrender.com/Book/delete-book/?id=${deleteId}`,
+          `https://bookapp-backend-wuwu.onrender.com/Books/delete-book/?id=${deleteId}`,
           {},
           {
             headers: {
@@ -104,7 +104,7 @@ const ViewBooks = () => {
   useEffect(() => {
     const FechData = async () => {
       try {
-        const res = await axios.get(`https://bookapp-backend-wuwu.onrender.com/?page=${page}&limit=4`, {
+        const res = await axios.get(`https://bookapp-backend-wuwu.onrender.com/Books/?page=${page}&limit=4`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
