@@ -53,7 +53,7 @@ const ViewBooks = () => {
     try {
       const dltdata = async () => {
         const res = await axios.put(
-          `https://bookapp-backend-wuwu.onrender.com/Books/delete-book/?id=${deleteId}`,
+          `ht tps://bookapp-backend-wuwu.onrender.com/Books/delete-book/?id=${deleteId}`,
           {},
           {
             headers: {
