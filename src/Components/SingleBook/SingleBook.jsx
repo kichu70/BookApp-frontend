@@ -35,7 +35,7 @@ const SingleBook = () => {
     const getdata = async () => {
       try {
         const res = await axios.get(
-          `${process.env.URL}/Books/single-book/?id=${id}`,
+          `${process.env.REACT_APP_URL}/Books/single-book/?id=${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -63,7 +63,7 @@ const SingleBook = () => {
     try {
       const dltdata = async () => {
         const res = await axios.put(
-          `${process.env.URL}/Books/delete-book/?id=${deleteId}`,
+          `${process.env.REACT_APP_URL}/Books/delete-book/?id=${deleteId}`,
           {},
           {
             headers: {
@@ -111,7 +111,7 @@ const SingleBook = () => {
     setNewValue(newValuee);
     try {
       const res = await axios.post(
-        `${process.env.URL}/Books/add-rating/?id=${id}`,
+        `${process.env.REACT_APP_URL}/Books/add-rating/?id=${id}`,
         {
           rating: newValuee,
         },
@@ -150,7 +150,7 @@ const SingleBook = () => {
                       className="CardMedia"
                       sx={{ width: "100%", objectFit: "contain" }}
                       height="240px"
-                      image={`${process.env.URL}/${img}`}
+                      image={`${process.env.REACT_APP_URL}/${img}`}
                       component="img"
                       title={`${book.bookname} - ${index + 1}`}
                     />

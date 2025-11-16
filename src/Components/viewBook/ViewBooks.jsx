@@ -53,7 +53,7 @@ const ViewBooks = () => {
     try {
       const dltdata = async () => {
         const res = await axios.put(
-          `${process.env.URL}/Books/delete-book/?id=${deleteId}`,
+          `${process.env.REACT_APP_URL}/Books/delete-book/?id=${deleteId}`,
           {},
           {
             headers: {
@@ -104,7 +104,7 @@ const ViewBooks = () => {
   useEffect(() => {
     const FechData = async () => {
       try {
-        const res = await axios.get(`${process.env.URL}/Books/top/?page=${page}&limit=4`, {
+        const res = await axios.get(`${process.env.REACT_APP_URL}/Books/top/?page=${page}&limit=4`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -146,7 +146,7 @@ const ViewBooks = () => {
                         className="CardMedia"
                         sx={{ width: "100%", objectFit: "contain" }}
                         height="240px"
-                        image={`${process.env.URL}/${img}`}
+                        image={`${process.env.REACT_APP_URL}/${img}`}
                         component="img"
                         title={`${book.bookname} - ${index + 1}`}
                          onClick={()=>naviagte(`/single-book/${book.id}`)}

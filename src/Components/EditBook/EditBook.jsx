@@ -24,7 +24,7 @@ useEffect(()=>{
 },[book])
 const UpdateBook = async()=>{
   try{
-    const res =await axios.put(`${process.env.URL}/Books/upadte-book?id=${id}`,
+    const res =await axios.put(`${process.env.REACT_APP_URL}/Books/upadte-book?id=${id}`,
       {
         author:bookAuthor,
         bookname:bookName,
