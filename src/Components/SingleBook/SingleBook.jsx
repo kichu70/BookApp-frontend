@@ -35,7 +35,7 @@ const SingleBook = () => {
     const getdata = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/Books/single-book/?id=${id}`,
+          `https://bookapp-backend-wuwu.onrender.com/Books/single-book/?id=${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -63,7 +63,7 @@ const SingleBook = () => {
     try {
       const dltdata = async () => {
         const res = await axios.put(
-          `http://localhost:5000/Books/delete-book/?id=${deleteId}`,
+          `https://bookapp-backend-wuwu.onrender.com/Books/delete-book/?id=${deleteId}`,
           {},
           {
             headers: {
@@ -111,7 +111,7 @@ const SingleBook = () => {
     setNewValue(newValuee);
     try {
       const res = await axios.post(
-        `http://localhost:5000/Books/add-rating/?id=${id}`,
+        `https://bookapp-backend-wuwu.onrender.com/Books/add-rating/?id=${id}`,
         {
           rating: newValuee,
         },
@@ -150,7 +150,7 @@ const SingleBook = () => {
                       className="CardMedia"
                       sx={{ width: "100%", objectFit: "contain" }}
                       height="240px"
-                      image={`http://localhost:5000/${img}`}
+                      image={`https://bookapp-backend-wuwu.onrender.com/${img}`}
                       component="img"
                       title={`${book.bookname} - ${index + 1}`}
                     />

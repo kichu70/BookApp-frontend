@@ -42,7 +42,7 @@ const AddBook = () => {
         formData.append("image", img);
       });
       const res = await axios.post(
-        `http://localhost:5000/Books/add-book`,
+        `https://bookapp-backend-wuwu.onrender.com/Books/add-book`,
         formData,
         {
           headers: {
