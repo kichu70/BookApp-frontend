@@ -16,6 +16,7 @@
   border-radius: 20px !important;
   box-shadow: rgb(181, 172, 118) 0 0 10px !important;
 }
+
 .price {
   margin: 0 0 20px;
 }
@@ -29,7 +30,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 300px;
+  max-width: 250px;
 }
 .discription {
   max-width: 300px;

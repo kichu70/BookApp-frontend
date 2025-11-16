@@ -36,7 +36,7 @@ const SignUp = () => {
          toast.error("passwords dont match");
          return
       }
-      const res = await axios.post("https://bookapp-backend-1-2jhn.onrender.com/user/add-user", {
+      const res = await axios.post(`${process.env.URL}/user/add-user`, {
         username,
         email,
         password,
