@@ -42,7 +42,7 @@ const AddBook = () => {
         formData.append("image", img);
       });
       const res = await axios.post(
-        `${process.env.REACT_APP_URL}/Books/add-book`,
+        `http://localhost:5000/Books/add-book`,
         formData,
         {
           headers: {

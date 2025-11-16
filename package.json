@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.12.2",
     "browser-router": "^0.2.0",
+    "dotenv": "^17.2.3",
     "jwt-decode": "^4.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -51,5 +52,4 @@
   "main": "index.js",
   "author": "ansif",
   "license": "ISC"
-  
 }

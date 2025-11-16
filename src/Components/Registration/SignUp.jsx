@@ -36,7 +36,7 @@ const SignUp = () => {
          toast.error("passwords dont match");
          return
       }
-      const res = await axios.post(`${process.env.URREACT_APP_URL}/user/add-user`, {
+      const res = await axios.post("http://localhost:5000/user/add-user", {
         username,
         email,
         password,
