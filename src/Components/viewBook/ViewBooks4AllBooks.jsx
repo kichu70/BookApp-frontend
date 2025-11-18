@@ -56,7 +56,7 @@ const ViewBooks4AllBooks = () => {
     try {
       const dltdata = async () => {
         const res = await axios.put(
-          `https://bookapp-backend-wuwu.onrender.com/Books/delete-book/?id=${deleteId}`,
+          `https://bookapp-backend-1-w5a3.onrender.com/Books/delete-book/?id=${deleteId}`,
           {},
           {
             headers: {
@@ -107,7 +107,7 @@ const ViewBooks4AllBooks = () => {
   useEffect(() => {
     const FechData = async () => {
       try {
-        const res = await axios.get(`https://bookapp-backend-wuwu.onrender.com/Books/?page=${page}&limit=9`, {
+        const res = await axios.get(`https://bookapp-backend-1-w5a3.onrender.com/Books/?page=${page}&limit=9`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -150,7 +150,7 @@ const ViewBooks4AllBooks = () => {
                         className="CardMedia"
                         sx={{ width: "100%", objectFit: "contain" }}
                         height="240px"
-                        image={`z/${img}`}
+                        image={`https://bookapp-backend-1-w5a3.onrender.com/${img}`}
                         component="img"
                         title={`${book.bookname} - ${index + 1}`}
                          onClick={()=>naviagte(`/single-book/${book.id}`)}
